@@ -4,6 +4,7 @@ import { Bot, Zap, ArrowRight, Cpu, Brain } from 'lucide-react';
 import { Button } from '../ui/button';
 import { MatrixRain } from '../effects/MatrixRain';
 import { AnimatedTextCycle } from '../effects/AnimatedTextCycle';
+import { PossibleIntegrations } from '../integrations/PossibleIntegrations';
 
 interface AIXPTHeroProps {
   title?: string;
@@ -158,6 +159,11 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
           </div>
         </div>
+        {/* Integrations Section */}
+        <PossibleIntegrations 
+          heading="Intégrations Disponibles"
+          className="bg-black"
+        />
       </div>
 
       {/* Bottom Gradient */}
