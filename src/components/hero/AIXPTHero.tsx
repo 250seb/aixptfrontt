@@ -4,7 +4,6 @@ import { Bot, Zap, ArrowRight, Cpu, Brain } from 'lucide-react';
 import { Button } from '../ui/button';
 import { MatrixRain } from '../effects/MatrixRain';
 import { AnimatedTextCycle } from '../effects/AnimatedTextCycle';
-import { IntegrationsCarousel } from '../integrations/IntegrationsCarousel';
 
 interface AIXPTHeroProps {
   title?: string;
@@ -163,11 +162,6 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
 
       {/* Bottom Gradient */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
-
-      {/* Integrations Carousel */}
-      <div className="relative z-20">
-        <IntegrationsCarousel />
-      </div>
     </div>
   );
 };
