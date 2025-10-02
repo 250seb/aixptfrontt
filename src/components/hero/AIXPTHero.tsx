@@ -34,7 +34,7 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
   ];
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-black">
+    <div className="relative min-h-screen w-full max-w-full overflow-hidden bg-black">
       {/* Matrix Rain Background */}
       <MatrixRain 
         fontSize={16}
@@ -48,8 +48,8 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-blue-950/60 to-black/90 z-10" />
 
       {/* Content */}
-      <div className="relative z-20 flex min-h-screen items-center justify-center px-4 pt-32">
-        <div className="max-w-6xl mx-auto text-center">
+      <div className="relative z-20 flex min-h-screen items-center justify-center px-4 pt-32 w-full max-w-full">
+        <div className="max-w-6xl mx-auto text-center w-full">
           
           {/* AIXPT Logo/Brand - Keep spacing only */}
           <motion.div
@@ -68,14 +68,14 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-8"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-tight px-2">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight px-2 break-words max-w-full">
               {title}
               <br />
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent break-words">
                 <AnimatedTextCycle
                   words={automationWords}
                   interval={3000}
-                  className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl"
+                  className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl"
                 />
               </span>
             </h1>
@@ -86,7 +86,7 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed px-4"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed px-4 break-words"
           >
             {subtitle}
           </motion.p>
@@ -113,7 +113,7 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto px-4"
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto px-4 w-full"
           >
             {[
               {

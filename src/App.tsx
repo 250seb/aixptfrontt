@@ -53,14 +53,16 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      <Navbar 
-        currentPage={currentPage} 
+    <div className="min-h-screen overflow-x-hidden w-full max-w-full">
+      <Navbar
+        currentPage={currentPage}
         onPageChange={setCurrentPage}
         isConsultationOpen={isConsultationOpen}
         onConsultationToggle={setIsConsultationOpen}
       />
-      {renderCurrentPage()}
+      <div className="w-full max-w-full overflow-x-hidden">
+        {renderCurrentPage()}
+      </div>
     </div>
   );
 }

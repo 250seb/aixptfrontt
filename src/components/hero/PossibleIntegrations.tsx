@@ -186,9 +186,9 @@ const PossibleIntegrations: React.FC<PossibleIntegrationsProps> = ({
 
   return (
     <section
-      className={classNames("py-8 md:py-16 px-4", className)}
+      className={classNames("py-8 md:py-16 px-4 w-full max-w-full overflow-hidden", className)}
     >
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-6xl w-full max-w-full">
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">
           <h2

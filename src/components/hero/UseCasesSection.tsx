@@ -506,11 +506,11 @@ const UseCasesSection = ({ onOpenConsultation }: UseCasesSectionProps) => {
   return (
     <section
       ref={sectionRef}
-      className="w-full py-12 md:py-20 lg:py-24 px-4 bg-[#0A192F] relative overflow-hidden"
+      className="w-full max-w-full py-12 md:py-20 lg:py-24 px-4 bg-[#0A192F] relative overflow-hidden"
     >
 
 
-      <div className="container mx-auto max-w-7xl relative z-10">
+      <div className="container mx-auto max-w-7xl relative z-10 w-full max-w-full">
         {/* Header */}
         <motion.div
           className="text-center mb-8 md:mb-12 lg:mb-16"

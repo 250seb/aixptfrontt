@@ -130,7 +130,12 @@
   body {
     overflow-x: hidden;
     width: 100%;
+    max-width: 100vw;
     @apply bg-background text-foreground;
+  }
+  #root {
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 }
 

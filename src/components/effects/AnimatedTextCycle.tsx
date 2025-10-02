@@ -62,24 +62,24 @@ export const AnimatedTextCycle: React.FC<AnimatedTextCycleProps> = ({
 
   return (
     <>
-      <div 
-        ref={measureRef} 
+      <div
+        ref={measureRef}
         aria-hidden="true"
-        className="absolute opacity-0 pointer-events-none"
+        className="absolute opacity-0 pointer-events-none max-w-full"
         style={{ visibility: "hidden" }}
       >
         {words.map((word, i) => (
-          <span key={i} className={`font-bold ${className}`}>
+          <span key={i} className={`font-bold ${className}`} style={{ whiteSpace: "normal", wordBreak: "break-word" }}>
             {word}
           </span>
         ))}
       </div>
 
-      <motion.span 
-        className="relative inline-block"
-        animate={{ 
+      <motion.span
+        className="relative inline-block max-w-full"
+        animate={{
           width,
-          transition: { 
+          transition: {
             type: "spring",
             stiffness: 150,
             damping: 15,
@@ -95,7 +95,7 @@ export const AnimatedTextCycle: React.FC<AnimatedTextCycleProps> = ({
             initial="hidden"
             animate="visible"
             exit="exit"
-            style={{ whiteSpace: "nowrap" }}
+            style={{ whiteSpace: "normal", wordBreak: "break-word" }}
           >
             {words[currentIndex]}
           </motion.span>
