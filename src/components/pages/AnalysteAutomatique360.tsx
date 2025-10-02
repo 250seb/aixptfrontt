@@ -1,30 +1,36 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Target, Zap, TrendingUp, CheckCircle, ArrowLeft } from 'lucide-react';
+import { BarChart3, Database, FileText, ArrowLeft } from 'lucide-react';
 import { Button } from '../ui/button';
 
-interface EmailsAutomatisesProps {
+interface AnalysteAutomatique360Props {
   onNavigate: (page: string) => void;
   onOpenConsultation: () => void;
 }
 
-export const EmailsAutomatises: React.FC<EmailsAutomatisesProps> = ({ onNavigate, onOpenConsultation }) => {
+export const AnalysteAutomatique360: React.FC<AnalysteAutomatique360Props> = ({ onNavigate, onOpenConsultation }) => {
   const functionalities = [
-    "Segmentation automatique des prospects",
-    "Personnalisation dynamique du contenu",
-    "Optimisation des heures d'envoi",
-    "A/B testing automatisé",
-    "Suivi des performances en temps réel",
-    "Intégration CRM et analytics"
+    "Connexion aux bases clients / CRM / ERP / tableurs",
+    "Importation & structuration de données «lousses»",
+    "Recherche et enrichissement de données en ligne (ex. données de concurrents)",
+    "Analyse automatique : calculs, modèles statistiques, agrégations",
+    "Génération de rapports / mémos / résumés interprétatifs",
+    "Création de présentations visuelles alignées à vos templates",
+    "Construction de feuilles de calcul / dashboards (Excel, Google Sheets)",
+    "Suggestions visuelles intelligentes : graphiques, layouts, comparatifs",
+    "Intégrations multiples (CRM, outils marketing, API externes)",
+    "Workflows automatisés : planification hebdo/mensuelle, déclencheurs via événements"
   ];
 
   const advantages = [
-    "Augmentation du taux d'ouverture de 40%",
-    "Amélioration du ROI marketing",
-    "Gain de temps considérable",
-    "Ciblage précis et personnalisé",
-    "Automatisation complète des campagnes",
-    "Optimisation continue des performances"
+    "Gain de temps massif : des heures — voire des jours — économisés",
+    "Décisions éclairées : visualisations et insights immédiatement exploitables",
+    "Cohérence et fiabilité : rapports toujours bien formatés, sans erreurs humaines",
+    "Alignement stratégique : marketing, ventes, direction utilisent la même vue consolidée",
+    "Avantage concurrentiel : analyses comparatives avec le marché et concurrents",
+    "Scalabilité sans embauche : augmentez le volume sans recruter davantage",
+    "Flexibilité et contrôle : modifiez des paramètres de style, fréquence, profondeur",
+    "Sécurité et conformité : gestion des permissions, audit, accessibilité contrôlée"
   ];
 
   return (
@@ -40,7 +46,7 @@ export const EmailsAutomatises: React.FC<EmailsAutomatisesProps> = ({ onNavigate
           <Button
             onClick={() => onNavigate('fonctionnalites')}
             variant="ghost"
-            className="text-purple-400 hover:text-purple-300 hover:bg-purple-400/10"
+            className="text-indigo-400 hover:text-indigo-300 hover:bg-indigo-400/10"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Retour aux Services
@@ -55,21 +61,21 @@ export const EmailsAutomatises: React.FC<EmailsAutomatisesProps> = ({ onNavigate
           className="text-center mb-16"
         >
           <div className="flex justify-center mb-6">
-            <div className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-full p-6">
-              <Mail className="h-16 w-16 text-purple-400" />
+            <div className="bg-gradient-to-r from-indigo-600/20 to-purple-600/20 border border-indigo-500/30 rounded-full p-6">
+              <BarChart3 className="h-16 w-16 text-indigo-400" />
             </div>
           </div>
           
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Emails Automatisés
+            <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+              Analyste Automatique
             </span>
             <br />
-            <span className="text-white">Personnalisés</span>
+            <span className="text-white">360°</span>
           </h1>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Prospection personnalisée. En pilote automatique.
+            Transformez vos données brutes en rapports, présentations & feuilles de calcul — en un clic.
           </p>
         </motion.div>
 
@@ -78,14 +84,11 @@ export const EmailsAutomatises: React.FC<EmailsAutomatisesProps> = ({ onNavigate
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="bg-gray-900/50 backdrop-blur-sm border border-purple-500/20 rounded-lg p-8 mb-16"
+          className="bg-gray-900/50 backdrop-blur-sm border border-indigo-500/20 rounded-lg p-8 mb-16"
         >
           <h2 className="text-2xl font-bold text-white mb-4">Description</h2>
           <p className="text-gray-300 leading-relaxed text-lg">
-            Transformez votre stratégie email marketing avec notre système d'automatisation intelligent. 
-            Notre IA analyse le contexte client pour créer des courriels ciblés personalisés 
-            qui convertissent. Chaque email est optimisé pour maximiser l'engagement et générer des 
-            résultats mesurables.
+            Notre solution d'analyse automatisée 360° libère votre équipe de la lourde tâche de compiler des chiffres, mettre en forme des présentations ou corriger des feuilles de calcul. Elle connecte vos bases de données internes, importe des données externes (concurrents, marché), et génère des rapports professionnels, des présentations visuelles ainsi que des feuilles de calcul enrichies — le tout avec un simple prompt ou déclencheur automatique.
           </p>
         </motion.div>
 
@@ -95,10 +98,10 @@ export const EmailsAutomatises: React.FC<EmailsAutomatisesProps> = ({ onNavigate
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-gray-900/50 backdrop-blur-sm border border-purple-500/20 rounded-lg p-8"
+            className="bg-gray-900/50 backdrop-blur-sm border border-indigo-500/20 rounded-lg p-8"
           >
             <div className="flex items-center mb-6">
-              <Mail className="h-8 w-8 text-purple-400 mr-3" />
+              <Database className="h-8 w-8 text-indigo-400 mr-3" />
               <h2 className="text-2xl font-bold text-white">Services</h2>
             </div>
             
@@ -111,7 +114,7 @@ export const EmailsAutomatises: React.FC<EmailsAutomatisesProps> = ({ onNavigate
                   transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
                   className="flex items-start text-gray-300"
                 >
-                  <CheckCircle className="h-5 w-5 text-purple-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <FileText className="h-5 w-5 text-indigo-400 mr-3 mt-0.5 flex-shrink-0" />
                   <span>{functionality}</span>
                 </motion.li>
               ))}
@@ -126,7 +129,7 @@ export const EmailsAutomatises: React.FC<EmailsAutomatisesProps> = ({ onNavigate
             className="bg-gray-900/50 backdrop-blur-sm border border-purple-500/20 rounded-lg p-8"
           >
             <div className="flex items-center mb-6">
-              <TrendingUp className="h-8 w-8 text-pink-400 mr-3" />
+              <FileText className="h-8 w-8 text-purple-400 mr-3" />
               <h2 className="text-2xl font-bold text-white">Avantages</h2>
             </div>
             
@@ -139,7 +142,7 @@ export const EmailsAutomatises: React.FC<EmailsAutomatisesProps> = ({ onNavigate
                   transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
                   className="flex items-start text-gray-300"
                 >
-                  <CheckCircle className="h-5 w-5 text-pink-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <FileText className="h-5 w-5 text-purple-400 mr-3 mt-0.5 flex-shrink-0" />
                   <span>{advantage}</span>
                 </motion.li>
               ))}
@@ -154,19 +157,19 @@ export const EmailsAutomatises: React.FC<EmailsAutomatisesProps> = ({ onNavigate
           transition={{ duration: 0.8, delay: 1.0 }}
           className="text-center mt-16"
         >
-          <div className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-lg p-8">
+          <div className="bg-gradient-to-r from-indigo-600/20 to-purple-600/20 border border-indigo-500/30 rounded-lg p-8">
             <h3 className="text-2xl font-bold text-white mb-4">
-              Prêt à Booster Vos Conversions ?
+              Prêt à Automatiser Vos Analyses ?
             </h3>
             <p className="text-gray-300 mb-6">
-              Découvrez comment automatiser votre prospection email avec l'IA
+              Découvrez comment notre analyste automatique peut transformer vos données en insights actionnables
             </p>
             <Button
               onClick={onOpenConsultation}
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
+              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
             >
-              <Zap className="mr-2 h-5 w-5" />
-              Commencer Maintenant
+              <BarChart3 className="mr-2 h-5 w-5" />
+              Demander une Démonstration
             </Button>
           </div>
         </motion.div>

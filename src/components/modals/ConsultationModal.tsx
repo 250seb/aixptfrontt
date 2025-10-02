@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, ArrowRight } from 'lucide-react';
+import { X, ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
@@ -22,11 +22,33 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
     informationsSupplementaires: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Formulaire soumis:', formData);
-    // Ici vous pourriez envoyer les données à votre API
-    onClose();
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('https://hook.us2.make.com/7veoaqbfj1iiuyrjuqto17n6onrfktwt', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setShowSuccess(true);
+      } else {
+        console.error('Erreur lors de l\'envoi');
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -55,16 +77,50 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold text-white">Formulaire de contact</h2>
+          <h2 className="text-2xl font-bold text-white">
+            {showSuccess ? 'Merci pour votre demande !' : 'Formulaire de contact'}
+          </h2>
           <button
-            onClick={onClose}
+            onClick={() => {
+              if (showSuccess) {
+                setShowSuccess(false);
+                onClose();
+              } else {
+                onClose();
+              }
+            }}
             className="text-gray-400 hover:text-white transition-colors"
           >
             <X className="h-6 w-6" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        {showSuccess ? (
+          <div className="text-center space-y-6 py-8">
+            <CheckCircle className="h-16 w-16 text-green-400 mx-auto" />
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-2">
+                Votre demande a été envoyée avec succès !
+              </h3>
+              <p className="text-gray-300 mb-4">
+                Vous serez contacté(e) dans un délai de 24-48 heures.
+              </p>
+              <p className="text-sm text-gray-400">
+                Pour les affaires urgentes, veuillez écrire à <a href="mailto:jarias@aixpt.ca" className="text-blue-400 hover:underline">jarias@aixpt.ca</a> ou appeler au 418-800-5085.
+              </p>
+            </div>
+            <Button
+              onClick={() => {
+                setShowSuccess(false);
+                onClose();
+              }}
+              className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3"
+            >
+              Fermer
+            </Button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-6">
           {/* Informations Personnelles */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-4 uppercase tracking-wide">
@@ -151,12 +207,14 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
           {/* Submit Button */}
           <Button
             type="submit"
-            className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
+            disabled={isSubmitting}
+            className={`w-full px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 ${isSubmitting ? 'bg-gray-600 cursor-not-allowed text-gray-300' : 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white'}`}
           >
-            Réserver votre consultation
-            <ArrowRight className="ml-2 h-5 w-5" />
+            {isSubmitting ? 'Envoi en cours...' : 'Réserver votre consultation'}
+            {!isSubmitting && <ArrowRight className="ml-2 h-5 w-5" />}
           </Button>
-        </form>
+          </form>
+        )}
       </motion.div>
     </div>
   );

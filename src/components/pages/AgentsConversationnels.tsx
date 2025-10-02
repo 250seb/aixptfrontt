@@ -5,9 +5,10 @@ import { Button } from '../ui/button';
 
 interface AgentsConversationnelsProps {
   onNavigate: (page: string) => void;
+  onOpenConsultation: () => void;
 }
 
-export const AgentsConversationnels: React.FC<AgentsConversationnelsProps> = ({ onNavigate }) => {
+export const AgentsConversationnels: React.FC<AgentsConversationnelsProps> = ({ onNavigate, onOpenConsultation }) => {
   const functionalities = [
     "Conversations naturelles multi-langues",
     "Apprentissage continu des interactions",
@@ -42,7 +43,7 @@ export const AgentsConversationnels: React.FC<AgentsConversationnelsProps> = ({ 
             className="text-green-400 hover:text-green-300 hover:bg-green-400/10"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Retour aux fonctionnalités
+            Retour aux Services
           </Button>
         </motion.div>
 
@@ -97,8 +98,8 @@ export const AgentsConversationnels: React.FC<AgentsConversationnelsProps> = ({ 
             className="bg-gray-900/50 backdrop-blur-sm border border-green-500/20 rounded-lg p-8"
           >
             <div className="flex items-center mb-6">
-              <Bot className="h-8 w-8 text-green-400 mr-3" />
-              <h2 className="text-2xl font-bold text-white">Fonctionnalités</h2>
+              <MessageCircle className="h-8 w-8 text-green-400 mr-3" />
+              <h2 className="text-2xl font-bold text-white">Services</h2>
             </div>
             
             <ul className="space-y-4">
@@ -161,6 +162,7 @@ export const AgentsConversationnels: React.FC<AgentsConversationnelsProps> = ({ 
               Découvrez comment nos agents IA peuvent transformer votre service client
             </p>
             <Button
+              onClick={onOpenConsultation}
               className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
             >
               <Sparkles className="mr-2 h-5 w-5" />

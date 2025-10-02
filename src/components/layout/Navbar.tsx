@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, Menu, X, Calendar } from 'lucide-react';
+import { Menu, X, Calendar } from 'lucide-react';
 import { Button } from '../ui/button';
 import { ConsultationModal } from '../modals/ConsultationModal';
 
@@ -21,7 +21,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navItems = [
     { id: 'accueil', label: 'Accueil' },
-    { id: 'fonctionnalites', label: 'Fonctionnalités' },
+    { id: 'fonctionnalites', label: 'Services' },
+    { id: 'contact', label: 'Nous Contacter' },
     { id: 'apropos', label: 'À propos' },
   ];
 
@@ -37,38 +38,49 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="flex items-center cursor-pointer"
               onClick={() => onPageChange('accueil')}
             >
-              <Bot className="h-8 w-8 text-blue-400 mr-2" />
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                AIXPT
-              </span>
+              <img src="/logoaixpt.png" alt="Aixpt Logo" className="h-12 w-auto mr-2" />
             </motion.div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center justify-end flex-1">
-              <div className="flex items-center space-x-12">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => onPageChange(item.id)}
-                  className={`text-sm font-medium transition-colors duration-200 ${
-                    currentPage === item.id
-                      ? 'text-blue-400'
-                      : 'text-gray-300 hover:text-white'
-                  }`}
+            {/* Desktop Navigation and Actions - Right Aligned */}
+            <div className="hidden md:flex items-center ml-auto space-x-8">
+              {/* Navigation Links */}
+              <div className="flex items-center space-x-6">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => onPageChange(item.id)}
+                    className={`text-sm font-medium transition-colors duration-200 ${
+                      currentPage === item.id
+                        ? 'text-blue-400'
+                        : 'text-gray-300 hover:text-white'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center space-x-4">
+                <a
+                  href="https://portal.aixpt.ca"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200"
                 >
-                  {item.label}
-                </button>
-              ))}
-              
-              <Button
-                onClick={() => onConsultationToggle(true)}
-                className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-6 py-2 rounded-lg transition-all duration-300 transform hover:scale-105"
-              >
-                <Calendar className="mr-2 h-4 w-4" />
-                Réserver Une Consultation
-              </Button>
+                  Accéder au Portail
+                </a>
+                
+                <Button
+                  onClick={() => onConsultationToggle(true)}
+                  className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-6 py-2 rounded-lg transition-all duration-300 transform hover:scale-105"
+                >
+                  <Calendar className="mr-2 h-4 w-4" />
+                  Réserver Une Consultation
+                </Button>
               </div>
             </div>
+
 
             {/* Mobile menu button */}
             <div className="md:hidden">
@@ -107,6 +119,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                       {item.label}
                     </button>
                   ))}
+                  
+                  <a
+                    href="https://portal.aixpt.ca"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-left text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200"
+                  >
+                    Accéder au Portail
+                  </a>
                   
                   <Button
                     onClick={() => {

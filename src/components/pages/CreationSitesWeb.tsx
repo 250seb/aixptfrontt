@@ -5,9 +5,10 @@ import { Button } from '../ui/button';
 
 interface CreationSitesWebProps {
   onNavigate: (page: string) => void;
+  onOpenConsultation: () => void;
 }
 
-export const CreationSitesWeb: React.FC<CreationSitesWebProps> = ({ onNavigate }) => {
+export const CreationSitesWeb: React.FC<CreationSitesWebProps> = ({ onNavigate, onOpenConsultation }) => {
   const functionalities = [
     "Design responsive et moderne",
     "Optimisation SEO avancée",
@@ -42,7 +43,7 @@ export const CreationSitesWeb: React.FC<CreationSitesWebProps> = ({ onNavigate }
             className="text-orange-400 hover:text-orange-300 hover:bg-orange-400/10"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Retour aux fonctionnalités
+            Retour aux Services
           </Button>
         </motion.div>
 
@@ -98,7 +99,7 @@ export const CreationSitesWeb: React.FC<CreationSitesWebProps> = ({ onNavigate }
           >
             <div className="flex items-center mb-6">
               <Code className="h-8 w-8 text-orange-400 mr-3" />
-              <h2 className="text-2xl font-bold text-white">Fonctionnalités</h2>
+              <h2 className="text-2xl font-bold text-white">Services</h2>
             </div>
             
             <ul className="space-y-4">
@@ -161,6 +162,7 @@ export const CreationSitesWeb: React.FC<CreationSitesWebProps> = ({ onNavigate }
               Découvrez comment nous pouvons transformer votre vision en réalité web
             </p>
             <Button
+              onClick={onOpenConsultation}
               className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
             >
               <Smartphone className="mr-2 h-5 w-5" />

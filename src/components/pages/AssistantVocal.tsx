@@ -5,9 +5,10 @@ import { Button } from '../ui/button';
 
 interface AssistantVocalProps {
   onNavigate: (page: string) => void;
+  onOpenConsultation: () => void;
 }
 
-export const AssistantVocal: React.FC<AssistantVocalProps> = ({ onNavigate }) => {
+export const AssistantVocal: React.FC<AssistantVocalProps> = ({ onNavigate, onOpenConsultation }) => {
   const functionalities = [
     "Réception d'appels automatisée 24h/24",
     "Reconnaissance vocale avancée",
@@ -42,7 +43,7 @@ export const AssistantVocal: React.FC<AssistantVocalProps> = ({ onNavigate }) =>
             className="text-blue-400 hover:text-blue-300 hover:bg-blue-400/10"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Retour aux fonctionnalités
+            Retour aux Services
           </Button>
         </motion.div>
 
@@ -98,7 +99,7 @@ export const AssistantVocal: React.FC<AssistantVocalProps> = ({ onNavigate }) =>
           >
             <div className="flex items-center mb-6">
               <Phone className="h-8 w-8 text-blue-400 mr-3" />
-              <h2 className="text-2xl font-bold text-white">Fonctionnalités</h2>
+              <h2 className="text-2xl font-bold text-white">Services</h2>
             </div>
             
             <ul className="space-y-4">
@@ -161,6 +162,7 @@ export const AssistantVocal: React.FC<AssistantVocalProps> = ({ onNavigate }) =>
               Découvrez comment notre assistant vocal peut révolutionner votre entreprise
             </p>
             <Button
+              onClick={onOpenConsultation}
               className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
             >
               <Clock className="mr-2 h-5 w-5" />

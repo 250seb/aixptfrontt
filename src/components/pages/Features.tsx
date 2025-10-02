@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mic, Mail, MessageCircle, Globe, ArrowRight } from 'lucide-react';
+import { Mic, Mail, MessageCircle, Globe, ArrowRight, BarChart3 } from 'lucide-react';
 import { Button } from '../ui/button';
 
 interface FeaturesProps {
@@ -38,6 +38,15 @@ export const Features: React.FC<FeaturesProps> = ({ onNavigate, onOpenConsultati
       iconColor: 'text-green-400'
     },
     {
+      id: 'analyste-automatique-360',
+      title: 'Analyste Automatique 360°',
+      description: 'Transformez vos données brutes en rapports, présentations & feuilles de calcul — en un clic.',
+      icon: BarChart3,
+      gradient: 'from-indigo-600 to-purple-600',
+      borderColor: 'border-indigo-500/30',
+      iconColor: 'text-indigo-400'
+    },
+    {
       id: 'creation-sites-web',
       title: 'Création de site web sur mesure',
       description: 'Un design remarquable, une fonctionnalité fluide. Votre vision, notre expertise.',
@@ -60,7 +69,7 @@ export const Features: React.FC<FeaturesProps> = ({ onNavigate, onOpenConsultati
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              Fonctionnalités
+              Services
             </span>
             <br />
             <span className="text-white">AIXPT</span>

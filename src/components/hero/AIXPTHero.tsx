@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Bot, Zap, ArrowRight, Cpu, Brain } from 'lucide-react';
+import { Zap, ArrowRight, Cpu, Brain } from 'lucide-react';
 import { Button } from '../ui/button';
 import { MatrixRain } from '../effects/MatrixRain';
 import { AnimatedTextCycle } from '../effects/AnimatedTextCycle';
+import PossibleIntegrations from './PossibleIntegrations';
+import UseCasesSection from './UseCasesSection';
 
 interface AIXPTHeroProps {
   title?: string;
@@ -11,14 +13,16 @@ interface AIXPTHeroProps {
   ctaText?: string;
   onCtaClick?: () => void;
   onNavigate?: (page: string) => void;
+  onOpenConsultation?: () => void;
 }
 
 export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
-  title = "L’automatisation IA qui propulse vos affaires.",
+  title = "L'automatisation IA qui propulse vos affaires.",
   subtitle = "Transformez votre entreprise avec des solutions d'automatisation IA de pointe qui évoluent avec vos ambitions",
   ctaText = "Commencer Votre Voyage IA",
   onCtaClick = () => console.log("Démarrage du voyage IA..."),
-  onNavigate
+  onNavigate,
+  onOpenConsultation = () => console.log("Open consultation")
 }) => {
   const automationWords = [
     "l'IA Automatisée",
@@ -44,22 +48,17 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-blue-950/60 to-black/90 z-10" />
 
       {/* Content */}
-      <div className="relative z-20 flex min-h-screen items-center justify-center px-4">
+      <div className="relative z-20 flex min-h-screen items-center justify-center px-4 pt-32">
         <div className="max-w-6xl mx-auto text-center">
           
-          {/* AIXPT Logo/Brand */}
+          {/* AIXPT Logo/Brand - Keep spacing only */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-8"
           >
-            <div className="flex items-center justify-center mb-4">
-              <Bot className="h-12 w-12 text-blue-400 mr-3" />
-              <span className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                AIXPT
-              </span>
-            </div>
+            {/* Content removed, spacing preserved */}
           </motion.div>
 
           {/* Main Heading */}
@@ -103,7 +102,7 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
               onClick={() => onNavigate && onNavigate('fonctionnalites')}
               className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25"
             >
-              <Bot className="mr-2 h-5 w-5" />
+              <Zap className="mr-2 h-5 w-5" />
               {ctaText}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
@@ -147,16 +146,30 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
             ))}
           </motion.div>
 
-          {/* Floating Elements */}
-          <div className="absolute top-20 left-10 animate-pulse">
-            <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-          </div>
-          <div className="absolute top-40 right-20 animate-pulse delay-1000">
-            <div className="w-3 h-3 bg-cyan-400 rounded-full"></div>
-          </div>
-          <div className="absolute bottom-40 left-20 animate-pulse delay-2000">
-            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-          </div>
+          {/* Possible Integrations Carousel */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.8 }}
+            className="my-16"
+          >
+            <h3 className="text-2xl font-semibold text-center text-white mb-8">
+              Intégrations Possibles
+            </h3>
+            <PossibleIntegrations />
+          </motion.div>
+
+          {/* Use Cases Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 2.0 }}
+            className="my-20"
+          >
+            <UseCasesSection onOpenConsultation={onOpenConsultation} />
+          </motion.div>
+
+
         </div>
       </div>
 

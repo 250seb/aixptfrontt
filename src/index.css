@@ -126,7 +126,29 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html,
   body {
+    overflow-x: hidden;
+    width: 100%;
     @apply bg-background text-foreground;
   }
+}
+
+/* Marquee animation for integrations carousel */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Pause on hover */
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
