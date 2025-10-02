@@ -35,10 +35,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="flex items-center cursor-pointer"
+              className="flex items-center cursor-pointer flex-shrink-0"
               onClick={() => onPageChange('accueil')}
             >
-              <img src="/logoaixpt.png" alt="Aixpt Logo" className="h-12 w-auto mr-2" />
+              <img src="/logoaixpt.png" alt="Aixpt Logo" className="h-10 md:h-12 w-auto" />
             </motion.div>
 
             {/* Desktop Navigation and Actions - Right Aligned */}
@@ -66,17 +66,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                   href="https://portal.aixpt.ca"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200"
+                  className="text-xs lg:text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200 whitespace-nowrap"
                 >
-                  Accéder au Portail
+                  Portail
                 </a>
                 
                 <Button
                   onClick={() => onConsultationToggle(true)}
-                  className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-6 py-2 rounded-lg transition-all duration-300 transform hover:scale-105"
+                  className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-4 lg:px-6 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 text-sm whitespace-nowrap"
                 >
-                  <Calendar className="mr-2 h-4 w-4" />
-                  Réserver Une Consultation
+                  <Calendar className="mr-1.5 lg:mr-2 h-3.5 w-3.5 lg:h-4 lg:w-4" />
+                  <span className="hidden lg:inline">Réserver Une Consultation</span>
+                  <span className="lg:hidden">Consultation</span>
                 </Button>
               </div>
             </div>

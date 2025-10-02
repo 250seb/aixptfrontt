@@ -90,10 +90,27 @@ const PossibleIntegrations: React.FC<PossibleIntegrationsProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const intervalRef = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [itemsPerView, setItemsPerView] = useState(5);
 
+  // Responsive items per view
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerView(1);
+      } else if (window.innerWidth < 768) {
+        setItemsPerView(2);
+      } else if (window.innerWidth < 1024) {
+        setItemsPerView(3);
+      } else {
+        setItemsPerView(5);
+      }
+    };
 
+    updateItemsPerView();
+    window.addEventListener('resize', updateItemsPerView);
+    return () => window.removeEventListener('resize', updateItemsPerView);
+  }, []);
 
-  const itemsPerView = 5;
   const maxIndex = Math.max(0, logos.length - itemsPerView);
 
   // Auto-scroll functionality
@@ -168,20 +185,20 @@ const PossibleIntegrations: React.FC<PossibleIntegrationsProps> = ({
   };
 
   return (
-    <section 
-      className={classNames("py-16 px-4", className)}
+    <section
+      className={classNames("py-8 md:py-16 px-4", className)}
     >
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 
-            className="text-3xl md:text-4xl font-bold mb-4"
+        <div className="text-center mb-8 md:mb-12">
+          <h2
+            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4"
             style={{ color: '#FFFFFF' }}
           >
             {heading}
           </h2>
-          <p 
-            className="text-lg max-w-2xl mx-auto"
+          <p
+            className="text-sm md:text-base lg:text-lg max-w-2xl mx-auto px-4"
             style={{ color: '#E0E6ED' }}
           >
             {description}
@@ -197,35 +214,35 @@ const PossibleIntegrations: React.FC<PossibleIntegrationsProps> = ({
           {/* Navigation Arrows */}
           <button
             onClick={scrollToPrevious}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full transition-all duration-200 hover:scale-110"
-            style={{ 
+            className="absolute left-0 md:left-0 top-1/2 -translate-y-1/2 z-10 p-1.5 md:p-2 rounded-full transition-all duration-200 hover:scale-110"
+            style={{
               backgroundColor: '#007BFF',
               color: '#FFFFFF'
             }}
             aria-label="Previous logos"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
           </button>
 
           <button
             onClick={scrollToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full transition-all duration-200 hover:scale-110"
-            style={{ 
+            className="absolute right-0 md:right-0 top-1/2 -translate-y-1/2 z-10 p-1.5 md:p-2 rounded-full transition-all duration-200 hover:scale-110"
+            style={{
               backgroundColor: '#007BFF',
               color: '#FFFFFF'
             }}
             aria-label="Next logos"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
           </button>
 
           {/* Logos Container */}
-          <div 
+          <div
             ref={containerRef}
-            className="overflow-hidden mx-12"
+            className="overflow-hidden mx-8 md:mx-12"
           >
-            <div 
-              className="flex transition-transform duration-500 ease-in-out gap-6"
+            <div
+              className="flex transition-transform duration-500 ease-in-out gap-3 md:gap-4 lg:gap-6"
               style={{
                 transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
               }}
@@ -236,8 +253,8 @@ const PossibleIntegrations: React.FC<PossibleIntegrationsProps> = ({
                   className="flex-shrink-0 group cursor-pointer"
                   style={{ width: `${100 / itemsPerView}%` }}
                 >
-                  <div 
-                    className="relative p-6 rounded-lg border transition-all duration-300 group-hover:scale-105"
+                  <div
+                    className="relative p-3 md:p-4 lg:p-6 rounded-lg border transition-all duration-300 group-hover:scale-105"
                     style={{
                       backgroundColor: 'rgba(255, 255, 255, 0.05)',
                       borderColor: 'rgba(255, 255, 255, 0.1)',
@@ -253,22 +270,22 @@ const PossibleIntegrations: React.FC<PossibleIntegrationsProps> = ({
                     />
                     
                     {/* Logo Content */}
-                    <div className="relative z-10 flex flex-col items-center justify-center h-20">
+                    <div className="relative z-10 flex flex-col items-center justify-center h-16 md:h-20">
                       {logo.image ? (
                         <img
                           src={logo.image}
                           alt={logo.name}
-                          className={classNames("object-contain", logo.className)}
+                          className={classNames("object-contain max-h-full w-auto", logo.className)}
                         />
                       ) : (
                         generateLogoSVG(logo.name)
                       )}
                     </div>
-                    
+
                     {/* Logo Name */}
-                    <div className="relative z-10 mt-3 text-center">
-                      <p 
-                        className="text-sm font-medium"
+                    <div className="relative z-10 mt-2 md:mt-3 text-center">
+                      <p
+                        className="text-xs md:text-sm font-medium"
                         style={{ color: '#E0E6ED' }}
                       >
                         {logo.name}

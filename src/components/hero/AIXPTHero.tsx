@@ -68,14 +68,14 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-8"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-tight px-2">
               {title}
               <br />
               <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent">
-                <AnimatedTextCycle 
+                <AnimatedTextCycle
                   words={automationWords}
                   interval={3000}
-                  className="text-5xl md:text-7xl lg:text-8xl"
+                  className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl"
                 />
               </span>
             </h1>
@@ -86,7 +86,7 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed px-4"
           >
             {subtitle}
           </motion.p>
@@ -96,15 +96,15 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.0 }}
-            className="flex justify-center items-center mb-16"
+            className="flex justify-center items-center mb-16 px-4"
           >
             <Button
               onClick={() => onNavigate && onNavigate('fonctionnalites')}
-              className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25"
+              className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-4 sm:px-6 md:px-8 py-3 md:py-4 text-sm sm:text-base md:text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25"
             >
-              <Zap className="mr-2 h-5 w-5" />
-              {ctaText}
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <Zap className="mr-2 h-4 w-4 md:h-5 md:w-5" />
+              <span className="text-sm sm:text-base md:text-lg">{ctaText}</span>
+              <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
             </Button>
           </motion.div>
 
@@ -113,7 +113,7 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto px-4"
           >
             {[
               {
@@ -137,11 +137,11 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.6 + index * 0.2 }}
-                className="bg-gray-900/50 backdrop-blur-sm border border-blue-500/20 rounded-lg p-6 hover:border-blue-400/40 transition-colors duration-300"
+                className="bg-gray-900/50 backdrop-blur-sm border border-blue-500/20 rounded-lg p-4 md:p-6 hover:border-blue-400/40 transition-colors duration-300"
               >
-                <div className="text-blue-400 mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
+                <div className="text-blue-400 mb-3 md:mb-4">{feature.icon}</div>
+                <h3 className="text-lg md:text-xl font-semibold text-white mb-2">{feature.title}</h3>
+                <p className="text-sm md:text-base text-gray-400">{feature.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -151,9 +151,9 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.8 }}
-            className="my-16"
+            className="my-12 md:my-16"
           >
-            <h3 className="text-2xl font-semibold text-center text-white mb-8">
+            <h3 className="text-xl md:text-2xl font-semibold text-center text-white mb-6 md:mb-8 px-4">
               Intégrations Possibles
             </h3>
             <PossibleIntegrations />
@@ -164,7 +164,7 @@ export const AIXPTHero: React.FC<AIXPTHeroProps> = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 2.0 }}
-            className="my-20"
+            className="my-12 md:my-20"
           >
             <UseCasesSection onOpenConsultation={onOpenConsultation} />
           </motion.div>

@@ -1,26 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence, useInView, useMotionValue, animate, type MotionValue, useTransform, useAnimation } from "framer-motion"
-import { 
-  Phone, 
-  MessageCircle, 
-  Mail, 
-  FileText, 
-  Calendar, 
-  Database, 
-  BookOpen, 
-  Gift, 
-  BarChart3, 
-  FileSpreadsheet, 
-  Search,
-  Presentation,
-  Zap,
-  ArrowRight,
-  Bot,
-  Users,
-  Building2,
-  Scale,
-  Cpu  // Ajout pour le moteur d'analyse
-} from "lucide-react"
+import { Phone, MessageCircle, Mail, FileText, Calendar, Database, BookOpen, Gift, ChartBar as BarChart3, FileSpreadsheet, Search, Presentation, Zap, ArrowRight, Bot, Users, Building2, Scale, Cpu } from "lucide-react"
 
 interface WorkflowStep {
   icon: React.ReactNode
@@ -362,7 +342,7 @@ const WorkflowCard = ({ workflow, index }: { workflow: Workflow; index: number }
   return (
     <motion.div
       ref={cardRef}
-      className="relative bg-[#0A192F]/80 backdrop-blur-sm border border-[#007AFF]/20 rounded-2xl p-8 overflow-hidden"
+      className="relative bg-[#0A192F]/80 backdrop-blur-sm border border-[#007AFF]/20 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 overflow-hidden"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: index * 0.2 }}
@@ -371,93 +351,113 @@ const WorkflowCard = ({ workflow, index }: { workflow: Workflow; index: number }
       <div className={`absolute inset-0 bg-gradient-to-br ${workflow.color} opacity-5`} />
       
       {/* Industry badge */}
-      <div className="flex items-center gap-2 mb-6">
-        <div className={`w-3 h-3 rounded-full ${workflow.accentColor}`} />
-        <span className="text-[#00D9F5] text-sm font-medium">{workflow.industry}</span>
+      <div className="flex items-center gap-2 mb-4 md:mb-6">
+        <div className={`w-2 h-2 md:w-3 md:h-3 rounded-full ${workflow.accentColor}`} />
+        <span className="text-[#00D9F5] text-xs md:text-sm font-medium">{workflow.industry}</span>
       </div>
 
       {/* Title */}
-      <h3 className="text-2xl font-bold text-white mb-2">{workflow.title}</h3>
-      <p className="text-gray-300 mb-8">{workflow.description}</p>
+      <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{workflow.title}</h3>
+      <p className="text-sm md:text-base text-gray-300 mb-6 md:mb-8">{workflow.description}</p>
 
       {/* Workflow visualization */}
-      <div className="flex items-center mb-8">
+      <div className="flex flex-col md:flex-row items-center gap-4 md:gap-0 mb-6 md:mb-8 overflow-x-auto">
         {/* Input */}
-        <motion.div 
-          className="flex flex-col items-center"
+        <motion.div
+          className="flex flex-col items-center flex-shrink-0"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={inputActive ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0.6 }}
           transition={{ duration: 0.5 }}
         >
-          <div ref={inputIconRef} className="w-20 h-20 bg-gradient-to-br from-gray-600 to-gray-700 rounded-xl flex items-center justify-center mb-2 relative">
-            {workflow.inputIcon}
+          <div ref={inputIconRef} className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-gray-600 to-gray-700 rounded-lg md:rounded-xl flex items-center justify-center mb-2 relative">
+            <div className="scale-75 md:scale-100">{workflow.inputIcon}</div>
             <motion.div
-              className="absolute inset-0 bg-[#007AFF]/20 rounded-xl"
+              className="absolute inset-0 bg-[#007AFF]/20 rounded-lg md:rounded-xl"
               animate={inputActive ? { opacity: [0, 0.5, 0] } : { opacity: 0 }}
               transition={{ duration: 3, repeat: Infinity }}
             />
           </div>
-          <span className="text-xs text-gray-400 text-center">{workflow.inputLabel}</span>
+          <span className="text-xs text-gray-400 text-center whitespace-nowrap">{workflow.inputLabel}</span>
         </motion.div>
 
         {/* Flow line to AI */}
-        <FlowLine 
-          progress={inputToAiProgress}
-          direction={inputDirection}
-          isVisible={inputFlowVisible}
-        />
+        <div className="hidden md:block flex-1">
+          <FlowLine
+            progress={inputToAiProgress}
+            direction={inputDirection}
+            isVisible={inputFlowVisible}
+          />
+        </div>
+        <div className="md:hidden h-8 w-0.5 bg-transparent">
+          <motion.div
+            className="h-full w-full bg-gradient-to-b from-[#007AFF] to-[#00D9F5]"
+            style={{
+              clipPath: useTransform(inputToAiProgress, (p) => `inset(${(1 - p) * 100}% 0 0 0)`)
+            }}
+          />
+        </div>
 
         {/* AI Agent */}
-        <motion.div 
-          className="flex flex-col items-center relative"
+        <motion.div
+          className="flex flex-col items-center relative flex-shrink-0"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={aiActive ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0.6 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <div className={`w-20 h-20 bg-gradient-to-br ${workflow.color} rounded-xl flex items-center justify-center mb-2 relative`}>
-            {workflow.aiIcon}
+          <div className={`w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br ${workflow.color} rounded-lg md:rounded-xl flex items-center justify-center mb-2 relative`}>
+            <div className="scale-75 md:scale-100">{workflow.aiIcon}</div>
             <motion.div
-              className="absolute inset-0 bg-white/10 rounded-xl"
+              className="absolute inset-0 bg-white/10 rounded-lg md:rounded-xl"
               variants={aiInnerVariants}
               animate={aiPulseState === 'pulsing' ? 'pulse' : aiPulseState}
               initial={false}
             />
             {/* Pulsing ring */}
             <motion.div
-              className="absolute inset-0 border-2 border-[#00D9F5] rounded-xl"
+              className="absolute inset-0 border-2 border-[#00D9F5] rounded-lg md:rounded-xl"
               variants={aiRingVariants}
               animate={aiPulseState === 'pulsing' ? 'pulse' : aiPulseState}
               initial={false}
             />
           </div>
-          <span className="text-xs text-[#00D9F5] font-medium text-center">{workflow.aiLabel}</span>
+          <span className="text-xs text-[#00D9F5] font-medium text-center whitespace-nowrap">{workflow.aiLabel}</span>
         </motion.div>
 
         {/* Flow line to Outputs */}
-        <FlowLine 
-          progress={aiToOutputsProgress}
-          direction={outputDirection}
-          isVisible={flowAiToOutputsActive}
-        />
+        <div className="hidden md:block flex-1">
+          <FlowLine
+            progress={aiToOutputsProgress}
+            direction={outputDirection}
+            isVisible={flowAiToOutputsActive}
+          />
+        </div>
+        <div className="md:hidden h-8 w-0.5 bg-transparent">
+          <motion.div
+            className="h-full w-full bg-gradient-to-b from-[#007AFF] to-[#00D9F5]"
+            style={{
+              clipPath: useTransform(aiToOutputsProgress, (p) => outputDirection === 'forward' ? `inset(${(1 - p) * 100}% 0 0 0)` : `inset(0 0 ${(1 - p) * 100}% 0)`)
+            }}
+          />
+        </div>
 
         {/* Outputs */}
-        <div className="flex flex-col gap-4 flex-1">
+        <div className="flex flex-col md:flex-row md:flex-1 gap-3 md:gap-4 w-full md:w-auto">
           {workflow.outputs.map((output, outIndex) => {
             const pulseControls = useAnimation();
             outputPulseControls.current[outIndex] = pulseControls;
             return (
-              <motion.div 
+              <motion.div
                 key={outIndex}
-                className="flex flex-col items-center"
+                className="flex flex-col items-center flex-1"
                 style={{
                   scale: useTransform(aiToOutputsProgress, (v: number) => outputsActive ? 0.9 + 0.2 * v : 0.9),
                   opacity: useTransform(aiToOutputsProgress, (v: number) => outputsActive ? 0.6 + 0.4 * v : 0.6)
                 }}
               >
-              <div className="w-20 h-20 bg-gradient-to-br from-gray-600 to-gray-700 rounded-xl flex items-center justify-center mb-1 relative">
-                {output.icon}
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-gray-600 to-gray-700 rounded-lg md:rounded-xl flex items-center justify-center mb-1 relative">
+                <div className="scale-75 md:scale-100">{output.icon}</div>
                 <motion.div
-                  className="absolute inset-0 bg-[#00D9F5]/20 rounded-xl"
+                  className="absolute inset-0 bg-[#00D9F5]/20 rounded-lg md:rounded-xl"
                   variants={outputVariants}
                   animate={pulseControls}
                   initial={false}
@@ -484,9 +484,9 @@ const WorkflowCard = ({ workflow, index }: { workflow: Workflow; index: number }
       </div>
 
       {/* Keywords */}
-      <div className="flex flex-wrap gap-2 mt-6">
+      <div className="flex flex-wrap gap-2 mt-4 md:mt-6">
         {workflow.keywords.map((keyword, kIndex) => (
-          <span key={kIndex} className="px-3 py-1 bg-[#007AFF]/10 text-[#00D9F5] text-xs rounded-full">
+          <span key={kIndex} className="px-2 md:px-3 py-1 bg-[#007AFF]/10 text-[#00D9F5] text-xs rounded-full">
             {keyword}
           </span>
         ))}
@@ -506,39 +506,39 @@ const UseCasesSection = ({ onOpenConsultation }: UseCasesSectionProps) => {
   return (
     <section
       ref={sectionRef}
-      className="w-full py-24 px-4 bg-[#0A192F] relative overflow-hidden"
+      className="w-full py-12 md:py-20 lg:py-24 px-4 bg-[#0A192F] relative overflow-hidden"
     >
 
 
       <div className="container mx-auto max-w-7xl relative z-10">
         {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-12 lg:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Zap className="w-5 h-5 text-[#007AFF]" />
-            <span className="text-[#007AFF] font-medium">FLUX DE TRAVAIL AUTOMATISÉS IA</span>
+          <div className="flex items-center justify-center gap-2 mb-3 md:mb-4">
+            <Zap className="w-4 h-4 md:w-5 md:h-5 text-[#007AFF]" />
+            <span className="text-xs md:text-sm text-[#007AFF] font-medium">FLUX DE TRAVAIL AUTOMATISÉS IA</span>
           </div>
-          
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 px-2">
             <span className="text-white">Découvrez nos </span>
             <span className="bg-gradient-to-r from-[#007AFF] to-[#00D9F5] bg-clip-text text-transparent">cas d'usage IA</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-16">
-            Ces exemples illustrent comment nos agents IA transforment les opérations dans divers secteurs. 
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto mb-8 md:mb-12 lg:mb-16 px-4">
+            Ces exemples illustrent comment nos agents IA transforment les opérations dans divers secteurs.
             Ce ne sont que quelques possibilités – nous concevons des solutions sur mesure pour répondre à tous vos besoins spécifiques.
           </p>
         </motion.div>
 
-        <div className="space-y-8 max-w-6xl mx-auto">
+        <div className="space-y-6 md:space-y-8 max-w-6xl mx-auto">
           {workflows.map((workflow, index) => (
-            <WorkflowCard 
+            <WorkflowCard
               key={workflow.id}
-              workflow={workflow} 
-              index={index} 
+              workflow={workflow}
+              index={index}
             />
           ))}
         </div>
@@ -547,14 +547,14 @@ const UseCasesSection = ({ onOpenConsultation }: UseCasesSectionProps) => {
 
         {/* Call to Action */}
         <motion.div
-          className="text-center mt-16 pt-8 border-t border-[#007AFF]/10"
+          className="text-center mt-12 md:mt-16 pt-6 md:pt-8 border-t border-[#007AFF]/10 px-4"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <h3 className="text-2xl font-semibold text-white mb-4">Prêt à révolutionner votre secteur ?</h3>
-          <button className="bg-gradient-to-r from-[#007AFF] to-[#00D9F5] text-white px-10 py-4 rounded-full font-bold text-lg hover:from-[#00D9F5] hover:to-[#007AFF] transition-all duration-300 shadow-lg hover:shadow-xl" onClick={onOpenConsultation}>
-            <span>Personnaliser Vos Solutions</span> <ArrowRight className="w-5 h-5 ml-2 inline-flex" />
+          <h3 className="text-xl md:text-2xl font-semibold text-white mb-4">Prêt à révolutionner votre secteur ?</h3>
+          <button className="bg-gradient-to-r from-[#007AFF] to-[#00D9F5] text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-bold text-sm md:text-base lg:text-lg hover:from-[#00D9F5] hover:to-[#007AFF] transition-all duration-300 shadow-lg hover:shadow-xl" onClick={onOpenConsultation}>
+            <span>Personnaliser Vos Solutions</span> <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-2 inline-flex" />
           </button>
         </motion.div>
       </div>
